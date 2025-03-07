@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề Thi</title>
+</head>
+<body>
+<h2 id="exam-title"></h2>
+<div id="question-list"></div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+
+    fetch(`http://localhost:8080/api/exams/${examId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("exam-title").innerText = data.exam.title;
+            let questionList = document.getElementById("question-list");
+
+            data.questions.forEach(q => {
+                let div = document.createElement("div");
+                div.innerHTML = `<p>${q.questionText}</p>
+                                     <label><input type="radio" name="q${q.id}" value="A"> ${q.optionA}</label><br>
+                                     <label><input type="radio" name="q${q.id}" value="B"> ${q.optionB}</label><br>
+                                     <label><input type="radio" name="q${q.id}" value="C"> ${q.optionC}</label><br>
+                                     <label><input type="radio" name="q${q.id}" value="D"> ${q.optionD}</label><br>`;
+                questionList.appendChild(div);
+            });
+        });
+</script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề Thi</title>
+</head>
+<body>
+<h2 id="exam-title"></h2>
+<div id="question-list"></div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const examId = urlParams.get('id');
+
+    fetch(`http://localhost:8080/api/exams/${examId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("exam-title").innerText = data.exam.title;
+            let questionList = document.getElementById("question-list");
+
+            data.questions.forEach(q => {
+                let div = document.createElement("div");
+                div.innerHTML = `<p>${q.questionText}</p>
+                                     <label><input type="radio" name="q${q.id}" value="A"> ${q.optionA}</label><br>
+                                     <label><input type="radio" name="q${q.id}" value="B"> ${q.optionB}</label><br>
+                                     <label><input type="radio" name="q${q.id}" value="C"> ${q.optionC}</label><br>
+                                     <label><input type="radio" name="q${q.id}" value="D"> ${q.optionD}</label><br>`;
+                questionList.appendChild(div);
+            });
+        });
+</script>
+</body>
+</html>
