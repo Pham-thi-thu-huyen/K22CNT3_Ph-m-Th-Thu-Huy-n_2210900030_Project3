@@ -5,40 +5,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-    @RequestMapping("index")
+    @RequestMapping("/")
     public String index() {
-        return "index";
+        return "home/index";
     }
     @RequestMapping("404")
     public String _404(){
-        return "404";
+        return "home/404";
     }
     @RequestMapping ("about")
     public String about (){
-        return "about";
+        return "home/about";
     }
     @RequestMapping("contact")
     public String contact (){
-        return "contact";
+        return "home/contact";
     }
    @RequestMapping("courses")
    public String courses (){
-        return "courses";
+        return "home/courses";
    }
     @RequestMapping("team")
     public String team (){
-        return "team";
+        return "home/team";
     }
     @RequestMapping("testimonial")
     public String testimonial (){
-        return "testimonial";
+        return "home/testimonial";
     }
     @RequestMapping("login")
     public String login (){
-        return "login";
+        return "home/login";
     }
     @RequestMapping("signup")
     public String signup (){
-        return "signup";
+        return "home/signup";
     }
 }
