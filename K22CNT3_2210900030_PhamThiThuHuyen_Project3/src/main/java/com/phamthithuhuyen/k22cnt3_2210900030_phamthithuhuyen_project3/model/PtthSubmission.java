@@ -3,6 +3,7 @@ package com.phamthithuhuyen.k22cnt3_2210900030_phamthithuhuyen_project3.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,8 +29,15 @@ public class PtthSubmission {
     @Column(name = "Score", nullable = false)
     private Float score;
 
-    @ColumnDefault("current_timestamp()")
-    @Column(name = "SubmittedAt", nullable = false)
+    @Column(name = "SubmittedAt", nullable = false) // Loại bỏ @ColumnDefault
     private Instant submittedAt;
 
+    @ColumnDefault("current_timestamp(6)")
+    @Column(name = "submitted_at", nullable = false)
+    private Instant submittedAt1;
+
+    @PrePersist
+    protected void onCreate() {
+        submittedAt = Instant.now();
+    }
 }

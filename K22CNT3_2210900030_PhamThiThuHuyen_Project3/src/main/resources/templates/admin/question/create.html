@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <nav th:replace="~{admin/fragments/header :: header}"></nav>
+    <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <h1 class="m-0">Thêm mới câu hỏi</h1>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm mới</h3>
+                        </div>
+                        <form method="POST" th:action="@{/admin/question}" th:object="${question}">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="id">Mã câu hỏi</label>
+                                    <input th:field="*{id}" type="number" class="form-control" id="id" placeholder="Nhập mã câu hỏi">
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">Nội dung</label>
+                                    <textarea th:field="*{content}" class="form-control" id="content" placeholder="Nhập nội dung câu hỏi"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="optionA">Đáp án A</label>
+                                    <input th:field="*{optionA}" type="text" class="form-control" id="optionA" placeholder="Nhập đáp án A">
+                                </div>
+                                <div class="form-group">
+                                    <label for="optionB">Đáp án B</label>
+                                    <input th:field="*{optionB}" type="text" class="form-control" id="optionB" placeholder="Nhập đáp án B">
+                                </div>
+                                <div class="form-group">
+                                    <label for="optionC">Đáp án C</label>
+                                    <input th:field="*{optionC}" type="text" class="form-control" id="optionC" placeholder="Nhập đáp án C">
+                                </div>
+                                <div class="form-group">
+                                    <label for="optionD">Đáp án D</label>
+                                    <input th:field="*{optionD}" type="text" class="form-control" id="optionD" placeholder="Nhập đáp án D">
+                                </div>
+                                <div class="form-group">
+                                    <label for="correctOption">Đáp án đúng</label>
+                                    <input th:field="*{correctOption}" type="text" class="form-control" id="correctOption" placeholder="Nhập đáp án đúng (A, B, C hoặc D)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="createdBy">Người tạo</label>
+                                    <input th:field="*{createdBy}" type="number" class="form-control" id="createdBy" placeholder="Nhập ID người tạo">
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
+    <div th:replace="~{admin/fragments/script :: script}"></div>
+</div>
+</body>
+</html>

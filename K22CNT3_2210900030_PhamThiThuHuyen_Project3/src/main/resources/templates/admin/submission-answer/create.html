@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <nav th:replace="~{admin/fragments/header :: header}"></nav>
+  <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <h1 class="m-0">Thêm mới câu trả lời bài nộp</h1>
+      </div>
+    </div>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Thêm mới</h3>
+            </div>
+            <form method="POST" th:action="@{/admin/submission-answer}" th:object="${submissionAnswer}">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="submissionID">Mã bài nộp</label>
+                  <input th:field="*{submissionID}" type="number" class="form-control" id="submissionID" placeholder="Nhập mã bài nộp">
+                </div>
+                <div class="form-group">
+                  <label for="questionID">Mã câu hỏi</label>
+                  <input th:field="*{questionID}" type="number" class="form-control" id="questionID" placeholder="Nhập mã câu hỏi">
+                </div>
+                <div class="form-group">
+                  <label for="answer">Câu trả lời</label>
+                  <input th:field="*{answer}" type="text" class="form-control" id="answer" placeholder="Nhập câu trả lời">
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Thêm</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
+  <div th:replace="~{admin/fragments/script :: script}"></div>
+</div>
+</body>
+</html>

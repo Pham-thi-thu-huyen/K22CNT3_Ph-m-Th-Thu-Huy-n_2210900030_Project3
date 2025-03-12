@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <nav th:replace="~{admin/fragments/header :: header}"></nav>
+  <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <h1 class="m-0">Chi tiết đề thi</h1>
+      </div>
+    </div>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Thông tin chi tiết</h3>
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Mã đề thi:</label>
+                <p th:text="${exam.examID}"></p>
+              </div>
+              <div class="form-group">
+                <label>Tiêu đề:</label>
+                <p th:text="${exam.title}"></p>
+              </div>
+              <div class="form-group">
+                <label>Mô tả:</label>
+                <p th:text="${exam.description}"></p>
+              </div>
+              <div class="form-group">
+                <label>Người tạo:</label>
+                <p th:text="${exam.createdBy}"></p>
+              </div>
+              <div class="form-group">
+                <label>Thời gian tạo:</label>
+                <p th:text="${exam.createdAt != null} ? ${#dates.format(exam.createdAt, 'dd-MM-yyyy HH:mm')} : 'N/A'"></p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <a th:href="@{/admin/exam}" class="btn btn-secondary">Quay lại</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
+  <div th:replace="~{admin/fragments/script :: script}"></div>
+</div>
+</body>
+</html>

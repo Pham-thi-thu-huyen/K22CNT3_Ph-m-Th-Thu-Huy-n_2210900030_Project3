@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <nav th:replace="~{admin/fragments/header :: header}"></nav>
+    <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <h1 class="m-0">Chi tiết câu hỏi</h1>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin chi tiết</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Mã câu hỏi:</label>
+                                <p th:text="${question.id}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Nội dung:</label>
+                                <p th:text="${question.content}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Đáp án A:</label>
+                                <p th:text="${question.optionA}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Đáp án B:</label>
+                                <p th:text="${question.optionB}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Đáp án C:</label>
+                                <p th:text="${question.optionC}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Đáp án D:</label>
+                                <p th:text="${question.optionD}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Đáp án đúng:</label>
+                                <p th:text="${question.correctOption}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Người tạo:</label>
+                                <p th:text="${question.createdBy}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Thời gian tạo:</label>
+                                <p th:text="${question.createdAt != null} ? ${#dates.format(question.createdAt, 'dd-MM-yyyy HH:mm')} : 'N/A'"></p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a th:href="@{/admin/question}" class="btn btn-secondary">Quay lại</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
+    <div th:replace="~{admin/fragments/script :: script}"></div>
+</div>
+</body>
+</html>

@@ -3,82 +3,49 @@
 <head th:replace="~{admin/fragments/head :: head}"></head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <!-- Navbar -->
     <nav th:replace="~{admin/fragments/header :: header}"></nav>
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
     <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
 
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Quản lý đề thi</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                            <li class="breadcrumb-item active">Quản lý đề thi</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                <h1 class="m-0">Thêm mới đề thi</h1>
+            </div>
         </div>
-        <!-- /.content-header -->
 
-        <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
-                    <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Thêm mới đề thi</h3>
+                            <h3 class="card-title">Thêm mới</h3>
                         </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
                         <form method="POST" th:action="@{/admin/exam}" th:object="${exam}">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="tendethi">Tên đề thi</label>
-                                    <input th:field="*{title}" type="text" class="form-control" id="tendethi" placeholder="Nhập tên đề thi">
+                                    <label for="title">Tiêu đề</label>
+                                    <input th:field="*{title}" type="text" class="form-control" id="title" placeholder="Nhập tiêu đề">
                                 </div>
                                 <div class="form-group">
-                                    <label for="mota">Mô tả</label>
-                                    <input th:field="*{description}" type="text" class="form-control" id="mota" placeholder="Nhập mô tả">
+                                    <label for="description">Mô tả</label>
+                                    <textarea th:field="*{description}" class="form-control" id="description" placeholder="Nhập mô tả"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nguoitao">Người tạo đề thi</label>
-                                    <input th:field="*{createdBy}" type="number" class="form-control" id="nguoitao" placeholder="Nhập ID người tạo">
+                                    <label for="createdBy">Người tạo</label>
+                                    <input th:field="*{createdBy}" type="number" class="form-control" id="createdBy" placeholder="Nhập ID người tạo">
                                 </div>
-
-                                <!-- /.card-body -->
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Thêm</button>
                             </div>
                         </form>
-                    <!-- /.card -->
+                    </div>
                 </div>
             </div>
-            </div>
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
     <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+    <div th:replace="~{admin/fragments/script :: script}"></div>
 </div>
-<!-- ./wrapper -->
-<div th:replace="~{admin/fragments/script :: script}"></div>
 </body>
 </html>

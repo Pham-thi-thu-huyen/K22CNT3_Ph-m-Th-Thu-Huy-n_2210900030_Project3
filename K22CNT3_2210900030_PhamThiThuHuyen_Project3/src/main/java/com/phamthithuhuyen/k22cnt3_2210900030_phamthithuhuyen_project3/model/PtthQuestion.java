@@ -17,7 +17,7 @@ public class PtthQuestion {
     private Integer id;
 
     @Lob
-    @Column(name = "Content", nullable = false)
+    @Column(name = "content", nullable = false)
     private String content;
 
     @Column(name = "OptionA", nullable = false)
@@ -35,13 +35,6 @@ public class PtthQuestion {
     @Lob
     @Column(name = "CorrectOption", nullable = false)
     private String correctOption;
-
-    @Lob
-    @Column(name = "Difficulty", nullable = false)
-    private String difficulty;
-
-    @Column(name = "Category", nullable = false, length = 100)
-    private String category;
 
     @Column(name = "CreatedBy", nullable = false)
     private Integer createdBy;

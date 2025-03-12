@@ -7,13 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "ptth_submission_answers")
+@Table(name = "ptth_submission_answer")
 public class PtthSubmissionAnswer {
+
     @EmbeddedId
     private PtthSubmissionAnswerId id;
 
-    @Lob
-    @Column(name = "selectedOption", nullable = false)
-    private String selectedOption;
-
+    @Column(name = "answer", nullable = false)
+    private String answer;
 }

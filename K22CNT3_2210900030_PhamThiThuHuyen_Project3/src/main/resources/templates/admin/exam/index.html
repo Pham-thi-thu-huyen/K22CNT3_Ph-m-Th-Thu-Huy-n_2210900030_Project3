@@ -1,51 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{admin/fragments/head :: head}"></head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-    <!-- Navbar -->
     <nav th:replace="~{admin/fragments/header :: header}"></nav>
-    <!-- /.navbar -->
-
-    <!-- Main Sidebar Container -->
     <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
 
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
                         <h1 class="m-0">Quản lý đề thi</h1>
-                    </div><!-- /.col -->
+                    </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/admin">Home</a></li>
                             <li class="breadcrumb-item active">Quản lý đề thi</li>
                         </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.content-header -->
 
-        <!-- Main content -->
         <section class="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="p-2 d-flex justify-content-between">
-                            <h3 class="card-title">Quản lý đề thi</h3>
-                            <a class=" mt-3 btn btn-success" href="/admin/exam/create">Thêm mới đề thi</a>
+                            <h3 class="card-title">Danh sách đề thi</h3>
+                            <a class="mt-3 btn btn-success" href="/admin/exam/create">Thêm mới</a>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
-                                    <th style="width: 10px">#</th>
+                                    <th>#</th>
                                     <th>Mã đề thi</th>
-                                    <th>Tên đề thi</th>
+                                    <th>Tiêu đề</th>
                                     <th>Mô tả</th>
                                     <th>Người tạo</th>
                                     <th>Thời gian tạo</th>
@@ -59,43 +51,26 @@
                                     <td th:text="${exam.title}"></td>
                                     <td th:text="${exam.description}"></td>
                                     <td th:text="${exam.createdBy}"></td>
-                                    <td th:text="${#dates.format(exam.createdAt, 'dd-MM-yyyy HH:mm')}"></td>
+                                    <td th:text="${exam.createdAt != null} ? ${#dates.format(exam.createdAt, 'dd-MM-yyyy HH:mm')} : 'N/A'"></td>
                                     <td>
-                                        <a th:href="@{/admin/exam/show/{id}(id=${exam.examID})} " class="btn btn-primary">Thêm</a>
+                                        <a th:href="@{/admin/exam/show/{id}(id=${exam.examID})}" class="btn btn-primary">Xem</a>
                                         <a th:href="@{/admin/exam/edit/{id}(id=${exam.examID})}" class="btn btn-warning">Sửa</a>
                                         <a th:href="@{/admin/exam/delete/{id}(id=${exam.examID})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Xóa</a>
                                     </td>
                                 </tr>
+                                <tr th:if="${#lists.isEmpty(list_exam)}">
+                                    <td colspan="7">Không có dữ liệu</td>
+                                </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <ul class="pagination pagination-sm m-0 float-right">
-                                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
-        <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
     <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
-
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+    <div th:replace="~{admin/fragments/script :: script}"></div>
 </div>
-<!-- ./wrapper -->
-<div th:replace="~{admin/fragments/script :: script}"></div>
 </body>
 </html>

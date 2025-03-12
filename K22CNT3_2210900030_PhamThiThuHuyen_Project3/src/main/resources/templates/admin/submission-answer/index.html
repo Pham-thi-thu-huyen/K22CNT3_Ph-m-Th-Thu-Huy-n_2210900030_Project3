@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <nav th:replace="~{admin/fragments/header :: header}"></nav>
+  <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Quản lý câu trả lời bài nộp</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+              <li class="breadcrumb-item active">Quản lý câu trả lời bài nộp</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="p-2 d-flex justify-content-between">
+              <h3 class="card-title">Danh sách câu trả lời</h3>
+              <a class="mt-3 btn btn-success" href="/admin/submission-answer/create">Thêm mới</a>
+            </div>
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Mã bài nộp</th>
+                  <th>Mã câu hỏi</th>
+                  <th>Câu trả lời</th>
+                  <th>Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="submissionAnswer, status : ${list_submission_answer}">
+                  <td th:text="${status.index + 1}"></td>
+                  <td th:text="${submissionAnswer.id.submissionID}"></td>
+                  <td th:text="${submissionAnswer.id.questionID}"></td>
+                  <td th:text="${submissionAnswer.answer}"></td>
+                  <td>
+                    <a th:href="@{/admin/submission-answer/show/{submissionID}/{questionID}(submissionID=${submissionAnswer.id.submissionID}, questionID=${submissionAnswer.id.questionID})}" class="btn btn-primary">Xem</a>
+                    <a th:href="@{/admin/submission-answer/edit/{submissionID}/{questionID}(submissionID=${submissionAnswer.id.submissionID}, questionID=${submissionAnswer.id.questionID})}" class="btn btn-warning">Sửa</a>
+                    <a th:href="@{/admin/submission-answer/delete/{submissionID}/{questionID}(submissionID=${submissionAnswer.id.submissionID}, questionID=${submissionAnswer.id.questionID})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Xóa</a>
+                  </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(list_submission_answer)}">
+                  <td colspan="5">Không có dữ liệu</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
+  <div th:replace="~{admin/fragments/script :: script}"></div>
+</div>
+</body>
+</html>

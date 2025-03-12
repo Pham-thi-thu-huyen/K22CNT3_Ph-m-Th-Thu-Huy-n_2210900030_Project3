@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <nav th:replace="~{admin/fragments/header :: header}"></nav>
+  <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <h1 class="m-0">Chỉnh sửa bài nộp</h1>
+      </div>
+    </div>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Chỉnh sửa</h3>
+            </div>
+            <form method="POST" th:action="@{/admin/submission/edit/{id}(id=${submission.id})}" th:object="${submission}">
+              <div class="card-body">
+                <input th:field="*{id}" type="hidden" class="form-control" id="id">
+                <div class="form-group">
+                  <label for="examID">Mã đề thi</label>
+                  <input th:field="*{examID}" type="number" class="form-control" id="examID" placeholder="Nhập mã đề thi">
+                </div>
+                <div class="form-group">
+                  <label for="userID">Mã người dùng</label>
+                  <input th:field="*{userID}" type="number" class="form-control" id="userID" placeholder="Nhập mã người dùng">
+                </div>
+                <div class="form-group">
+                  <label for="score">Điểm</label>
+                  <input th:field="*{score}" type="number" step="0.01" class="form-control" id="score" placeholder="Nhập điểm">
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
+  <div th:replace="~{admin/fragments/script :: script}"></div>
+</div>
+</body>
+</html>

@@ -5,17 +5,22 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import java.time.Instant;
-
-@Getter
-@Setter
-@Entity
 @Data
+@Entity
 @Table(name = "ptth_exam")
 public class PtthExam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Thêm @GeneratedValue nếu ID tự động tăng
     @Column(name = "ExamID", nullable = false)
     private Integer examID;
+
+    public Integer getExamID() {
+        return examID;
+    }
+
+    public void setExamID(Integer examID) {
+        this.examID = examID;
+    }
 
     @Column(name = "Title", nullable = false)
     private String title;
@@ -35,4 +40,8 @@ public class PtthExam {
     protected void onCreate() {
         createdAt = Instant.now();
     }
+
+
 }
+
+

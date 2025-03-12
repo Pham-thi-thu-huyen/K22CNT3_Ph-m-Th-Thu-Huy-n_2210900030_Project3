@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <nav th:replace="~{admin/fragments/header :: header}"></nav>
+  <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <h1 class="m-0">Chỉnh sửa câu hỏi trong đề thi</h1>
+      </div>
+    </div>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Chỉnh sửa</h3>
+            </div>
+            <form method="POST" th:action="@{/admin/exam-question/edit/{examId}/{questionId}(examId=${examQuestion.id.examId}, questionId=${examQuestion.id.questionId})}" th:object="${examQuestion}">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="examId">Mã đề thi</label>
+                  <input th:field="*{id.examId}" type="number" class="form-control" id="examId" placeholder="Nhập mã đề thi">
+                </div>
+                <div class="form-group">
+                  <label for="questionId">Mã câu hỏi</label>
+                  <input th:field="*{id.questionId}" type="number" class="form-control" id="questionId" placeholder="Nhập mã câu hỏi">
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
+  <div th:replace="~{admin/fragments/script :: script}"></div>
+</div>
+</body>
+</html>
