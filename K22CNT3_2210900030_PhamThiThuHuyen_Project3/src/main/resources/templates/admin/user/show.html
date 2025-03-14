@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html th:lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/head :: head}"></head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+    <nav th:replace="~{admin/fragments/header :: header}"></nav>
+    <aside th:replace="~{admin/fragments/asideSidebar :: asideSidebar}"></aside>
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <h1 class="m-0">Chi tiết người dùng</h1>
+            </div>
+        </div>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin chi tiết</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Mã người dùng:</label>
+                                <p th:text="${user.id}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Họ tên:</label>
+                                <p th:text="${user.fullName}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <p th:text="${user.email}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Vai trò:</label>
+                                <p th:text="${user.role}"></p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a th:href="@{/admin/user}" class="btn btn-secondary">Quay lại</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer th:replace="~{admin/fragments/mainFooter :: mainFooter}"></footer>
+    <div th:replace="~{admin/fragments/script :: script}"></div>
+</div>
+</body>
+</html>

@@ -11,12 +11,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Quản lý kỳ thi</h1>
+                        <h1 class="m-0">Quản lý người dùng</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                            <li class="breadcrumb-item active">Quản lý kỳ thi</li>
+                            <li class="breadcrumb-item active">Quản lý người dùng</li>
                         </ol>
                     </div>
                 </div>
@@ -28,38 +28,36 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="p-2 d-flex justify-content-between">
-                            <h3 class="card-title">Danh sách kỳ thi</h3>
-                            <a class="mt-3 btn btn-success" href="/admin/exam/create">Thêm mới</a>
+                            <h3 class="card-title">Danh sách người dùng</h3>
+                            <a class="mt-3 btn btn-success" href="/admin/user/create">Thêm mới</a>
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Mã kỳ thi</th>
-                                    <th>Tiêu đề</th>
-                                    <th>Mô tả</th>
-                                    <th>Người tạo</th>
-                                    <th>Thời gian tạo</th>
+                                    <th>Mã người dùng</th>
+                                    <th>Họ tên</th>
+                                    <th>Email</th>
+                                    <th>Vai trò</th>
                                     <th>Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="exam, status : ${list_exam}">
+                                <tr th:each="user, status : ${list_user}">
                                     <td th:text="${status.index + 1}"></td>
-                                    <td th:text="${exam.examID}"></td>
-                                    <td th:text="${exam.title}"></td>
-                                    <td th:text="${exam.description}"></td>
-                                    <td th:text="${exam.createdBy}"></td>
-                                    <td th:text="${exam.createdAt != null} ? ${#dates.format(exam.createdAt, 'dd-MM-yyyy HH:mm')} : 'N/A'"></td>
+                                    <td th:text="${user.id}"></td>
+                                    <td th:text="${user.fullName}"></td>
+                                    <td th:text="${user.email}"></td>
+                                    <td th:text="${user.role}"></td>
                                     <td>
-                                        <a th:href="@{/admin/exam/show/{id}(id=${exam.examID})}" class="btn btn-primary">Xem</a>
-                                        <a th:href="@{/admin/exam/edit/{id}(id=${exam.examID})}" class="btn btn-warning">Sửa</a>
-                                        <a th:href="@{/admin/exam/delete/{id}(id=${exam.examID})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Xóa</a>
+                                        <a th:href="@{/admin/user/show/{id}(id=${user.id})}" class="btn btn-primary">Xem</a>
+                                        <a th:href="@{/admin/user/edit/{id}(id=${user.id})}" class="btn btn-warning">Sửa</a>
+                                        <a th:href="@{/admin/user/delete/{id}(id=${user.id})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Xóa</a>
                                     </td>
                                 </tr>
-                                <tr th:if="${#lists.isEmpty(list_exam)}">
-                                    <td colspan="7">Không có dữ liệu</td>
+                                <tr th:if="${#lists.isEmpty(list_user)}">
+                                    <td colspan="6">Không có dữ liệu</td>
                                 </tr>
                                 </tbody>
                             </table>

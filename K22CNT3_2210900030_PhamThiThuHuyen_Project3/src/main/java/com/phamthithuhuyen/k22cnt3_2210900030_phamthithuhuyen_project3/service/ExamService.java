@@ -15,24 +15,25 @@ public class ExamService {
     @Autowired
     private ExamRepository examRepository;
 
-    // Lấy danh sách tất cả bài thi
+    // Lấy danh sách tất cả kỳ thi
     public List<PtthExam> getExamList() {
         return examRepository.findAll();
     }
 
-    // Thêm mới bài thi
+    // Thêm mới kỳ thi
     public Boolean save(ExamDTO examDTO) {
         try {
             PtthExam exam = new PtthExam();
             BeanUtils.copyProperties(examDTO, exam);
-            examRepository.save(exam); // createdAt sẽ được gán tự động bởi @PrePersist
+            // Thời gian tạo sẽ được gán tự động trong @PrePersist
+            examRepository.save(exam);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    // Xóa bài thi
+    // Xóa kỳ thi
     public Boolean delete(Integer id) {
         if (examRepository.existsById(id)) {
             examRepository.deleteById(id);
@@ -41,18 +42,19 @@ public class ExamService {
         return false;
     }
 
-    // Tìm bài thi theo ID
+    // Tìm kỳ thi theo ID
     public PtthExam findById(Integer id) {
         return examRepository.findById(id).orElse(null);
     }
 
-    // Cập nhật bài thi
+    // Cập nhật kỳ thi
     public Boolean update(Integer id, ExamDTO examDTO) {
         try {
             PtthExam exam = findById(id);
             if (exam != null) {
                 BeanUtils.copyProperties(examDTO, exam);
                 exam.setExamID(id); // Đảm bảo ID không bị thay đổi
+                // Không cần set lại createdAt vì nó không thay đổi
                 examRepository.save(exam);
                 return true;
             }

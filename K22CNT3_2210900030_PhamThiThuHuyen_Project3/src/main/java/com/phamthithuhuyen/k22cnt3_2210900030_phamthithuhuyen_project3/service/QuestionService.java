@@ -26,10 +26,12 @@ public class QuestionService {
         try {
             PtthQuestion question = new PtthQuestion();
             BeanUtils.copyProperties(questionDTO, question);
-            question.setCreatedAt(Instant.now()); // Gán thời gian tạo
+            // Đảm bảo createdAt luôn có giá trị
+            question.setCreatedAt(Instant.now());
             questionRepository.save(question);
             return true;
         } catch (Exception e) {
+            e.printStackTrace(); // In lỗi để debug
             return false;
         }
     }
@@ -53,13 +55,18 @@ public class QuestionService {
         try {
             PtthQuestion question = findById(id);
             if (question != null) {
+                // Lưu giá trị createdAt cũ trước khi copy
+                Instant originalCreatedAt = question.getCreatedAt();
                 BeanUtils.copyProperties(questionDTO, question);
                 question.setId(id); // Đảm bảo ID không bị thay đổi
+                // Khôi phục createdAt để không bị null
+                question.setCreatedAt(originalCreatedAt);
                 questionRepository.save(question);
                 return true;
             }
             return false;
         } catch (Exception e) {
+            e.printStackTrace(); // In lỗi để debug
             return false;
         }
     }

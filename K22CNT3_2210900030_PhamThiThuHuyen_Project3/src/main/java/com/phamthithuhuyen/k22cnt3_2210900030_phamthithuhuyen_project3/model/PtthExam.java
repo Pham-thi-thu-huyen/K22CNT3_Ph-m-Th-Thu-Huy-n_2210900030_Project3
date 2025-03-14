@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.Instant;
+
+@Getter
+@Setter
 @Data
 @Entity
 @Table(name = "ptth_exam")
@@ -14,13 +18,6 @@ public class PtthExam {
     @Column(name = "ExamID", nullable = false)
     private Integer examID;
 
-    public Integer getExamID() {
-        return examID;
-    }
-
-    public void setExamID(Integer examID) {
-        this.examID = examID;
-    }
 
     @Column(name = "Title", nullable = false)
     private String title;

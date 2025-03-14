@@ -43,7 +43,7 @@ public class QuestionController {
         return "redirect:/admin/question/create?error=true";
     }
 
-    // Hiển thị chi tiết câu hỏi (show)
+    // Hiển thị chi tiết câu hỏi
     @GetMapping("/show/{id}")
     public String show(Model model, @PathVariable("id") Integer id) {
         PtthQuestion question = questionService.findById(id);

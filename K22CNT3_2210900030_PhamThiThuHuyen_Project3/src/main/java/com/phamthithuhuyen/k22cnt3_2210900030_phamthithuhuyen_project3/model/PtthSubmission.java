@@ -32,10 +32,6 @@ public class PtthSubmission {
     @Column(name = "SubmittedAt", nullable = false) // Loại bỏ @ColumnDefault
     private Instant submittedAt;
 
-    @ColumnDefault("current_timestamp(6)")
-    @Column(name = "submitted_at", nullable = false)
-    private Instant submittedAt1;
-
     @PrePersist
     protected void onCreate() {
         submittedAt = Instant.now();

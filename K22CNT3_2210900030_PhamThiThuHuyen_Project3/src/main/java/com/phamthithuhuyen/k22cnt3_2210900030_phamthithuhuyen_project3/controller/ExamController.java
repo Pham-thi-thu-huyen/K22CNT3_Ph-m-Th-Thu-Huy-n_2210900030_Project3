@@ -19,7 +19,7 @@ public class ExamController {
     @Autowired
     private ExamService examService;
 
-    // Hiển thị danh sách bài thi
+    // Hiển thị danh sách kỳ thi
     @GetMapping
     public String index(Model model) {
         List<PtthExam> exams = examService.getExamList();
@@ -34,7 +34,7 @@ public class ExamController {
         return "admin/exam/create";
     }
 
-    // Lưu bài thi mới
+    // Lưu kỳ thi mới
     @PostMapping
     public String save(@ModelAttribute("exam") ExamDTO examDTO) {
         if (examService.save(examDTO)) {
@@ -43,7 +43,7 @@ public class ExamController {
         return "redirect:/admin/exam/create?error=true";
     }
 
-    // Hiển thị chi tiết bài thi (show)
+    // Hiển thị chi tiết kỳ thi
     @GetMapping("/show/{id}")
     public String show(Model model, @PathVariable("id") Integer id) {
         PtthExam exam = examService.findById(id);
@@ -59,7 +59,7 @@ public class ExamController {
         return "admin/exam/edit";
     }
 
-    // Cập nhật bài thi
+    // Cập nhật kỳ thi
     @PostMapping("/edit/{id}")
     public String update(@PathVariable("id") Integer id, @ModelAttribute("exam") ExamDTO examDTO) {
         if (examService.update(id, examDTO)) {
@@ -68,7 +68,7 @@ public class ExamController {
         return "redirect:/admin/exam/edit/" + id + "?error=true";
     }
 
-    // Xóa bài thi
+    // Xóa kỳ thi
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
         examService.delete(id);
